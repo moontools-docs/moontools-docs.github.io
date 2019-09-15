@@ -1,188 +1,188 @@
 [
 {
-	"uri": "/api/ishape2d/",
+	"uri": "/bonk/api/ishape2d/",
 	"title": "IShape2D",
 	"tags": [],
 	"description": "",
 	"content": " An IShape2D is an interface that, when implemented, allows for spatial hashing and the computation of Minkowski Differences.\nYour IShape2D types should be structs for memory efficiency purposes.\nMethods Vector2 Support(Vector2 direction, Transform2D transform) A method which implements a support function for use with a Minkowski Difference.\nThe support function must, given a directional vector and a Transform2D, return the farthest possible vertex of the transformed shape in the given direction.\nFor example, the support function for Bonk\u0026rsquo;s Circle implementation:\npublic Vector2 Support(Vector2 direction, Transform2D transform) { return Vector2.Transform(Vector2.Normalize(direction) * Radius, transform.TransformMatrix); }  AABB AABB(Transform2D transform) A method which returns the axis-aligned bounding box for the transformed shape.\nFor example, the AABB method for Bonk\u0026rsquo;s Circle implementation:\npublic AABB AABB(Transform2D Transform2D) { return new AABB( Transform2D.Position.X - Radius, Transform2D.Position.Y - Radius, Transform2D.Position.X + Radius, Transform2D.Position.Y + Radius ); }  "
 },
 {
-	"uri": "/transform/overview/",
+	"uri": "/bonk/transform/overview/",
 	"title": "Overview",
 	"tags": [],
 	"description": "",
 	"content": "Bonk uses the Transform2D struct which is taken from the MoonTools.Core.Structs package. By extension it also uses the Position2D struct taken from the same package.\nA Transform2D is basically a way to store information about an object\u0026rsquo;s location, rotation, and scale in 2-dimensional space. Transforms use matrix math to perform all of these operations at once, making them very fast.\nFor memory performance purposes, shapes are implemented as structs, meaning they are value types. This means that it is much easier to deal with collision using a transform applied to a shape, rather than containing a transform within the shape.\nIt is also often the case that you will have a shape attached to a game object that is offset from the object by a certain amount. A Transform2D can represent this information as well, since Tranform2Ds can be composed together. As you can see, a Transform2D provides a generic structure for dealing with many scenarios involving 2D space.\n"
 },
 {
-	"uri": "/narrow_phase/overview/",
+	"uri": "/bonk/narrow_phase/overview/",
 	"title": "Overview",
 	"tags": [],
 	"description": "",
 	"content": "In the broad phase, we were looking for speed. Now, once we have obtained a list of potential collisions, we want to know if these shapes are actually colliding or not. We are looking for accuracy.\n"
 },
 {
-	"uri": "/shapes/overview/",
+	"uri": "/bonk/shapes/overview/",
 	"title": "Overview",
 	"tags": [],
 	"description": "",
 	"content": "In Bonk, an IShape2D is defined by two methods.\n1) A support function, which is a method that returns the farthest possible point in the shape in a given Vector2 direction. The shape vertices are transformed by a Transform2D.\n2) A method for creating an axis-aligned bounding box from the shape that takes a Transform2D to transform the shape vertices.\nBonk provides you with tested implementations of four common 2D shapes, but you can implement these methods to create custom IShape2D structs.\nNote that shapes themselves do not contain absolute position data. You will use a Transform2D to manipulate the shape\u0026rsquo;s position, rotation, and scale in 2D space.\nA final restriction to note: Defining concave shapes is an error. The collision solving algorithm that Bonk uses does not support concave shapes. If you wish to define concave shapes, define them as a composition of multiple convex shapes.\n"
 },
 {
-	"uri": "/broad_phase/overview/",
+	"uri": "/bonk/broad_phase/overview/",
 	"title": "Overview",
 	"tags": [],
 	"description": "",
 	"content": "Let\u0026rsquo;s say we have a room with 100 objects. How do we know if any of those 100 objects are touching one another?\nThe naive solution is to simply check each pair of objects and see if they are colliding.\nUnfortunately, this will require 10000 comparisons.\nIn other words, this naive approach becomes extremely expensive as the number of collision objects grows.\nThe solution? Broad-phase collision detection.\nThe purpose of the broad-phase is to very quickly check if an object might be touching another object. Then, once we know that an object might be touching another object, we can do a more expensive and accurate test.\nThere are a few different ways to do this. The only way that Bonk currently implements is the spatial hash technique.\nThere are advantages and drawbacks to spatial hashing. The main drawback is that it does not handle objects of wildly varying size very well. I do not currently have time to implement alternatives to spatial hashing, but this project is free software\u0026hellip; if you would like to contribute a BSP implementation, for example, I would be overjoyed!\n"
 },
 {
-	"uri": "/getting_started/",
+	"uri": "/bonk/getting_started/",
 	"title": "Getting Started",
 	"tags": [],
 	"description": "",
 	"content": " Chapter 1 Getting Started It\u0026rsquo;s pretty simple.\n"
 },
 {
-	"uri": "/api/spatialhash/",
+	"uri": "/bonk/api/spatialhash/",
 	"title": "SpatialHash&lt;T&gt;",
 	"tags": [],
 	"description": "",
 	"content": " SpatialHash is used for broad-phase collision detection. It can quickly return a set of potential collisions of a transformed shape. SpatialHash takes an ID type that is used to avoid comparing certain shape-transforms.\nMethods public SpatialHash(int cellSize) Constructor method. Takes an integer representing the width of a cell in the spatial hash.\nThe cell width must not be too large or too small. If the cell width is too small, then shape-transforms will occupy many cells, and the hash check will have to check all of those cells for potential collisions. If the cell width is too large, then many shape-transforms will be contained in each cell and many expensive collision tests will have to be made.\nA good rule of thumb is picking a cell width that is roughly twice the size of the most common objects in your game.\nExample:\nvar hash = new SpatialHash\u0026lt;int\u0026gt;(16);  public void Insert(T id, IShape2D shape, Transform2D Transform2D) Given an ID, a shape, and corresponding transform, inserts into the spatial hash. Uses the shape\u0026rsquo;s AABB to insert into appropriate hash cells.\nExample:\nvar hash = new SpatialHash\u0026lt;int\u0026gt;(16); var circle = new MoonTools.Core.Bonk.Circle(8); var circleTransform = new Transform2D(new Vector2(16, 16)); var rect = new Rectangle(-2, -2, 2, 2); var rectTransform = new Transform2D(new Vector2(8, 8)); hash.Insert(0, circle, circleTransform); hash.Insert(1, rect, rectTransform);  public IEnumerable\u0026lt;(T, IShape2D, Transform2D)\u0026gt; Retrieve(T id, IShape2D shape, Transform2D Transform2D) Given an ID, a shape, and corresponding transform, retrieves a set of potential collisions from the spatial hash.\nExample:\nvar hash = new SpatialHash\u0026lt;int\u0026gt;(16); var circle = new MoonTools.Core.Bonk.Circle(8); var circleTransform = new Transform2D(new Vector2(16, 16)); var rect = new Rectangle(-2, -2, 2, 2); var rectTransform = new Transform2D(new Vector2(8, 8)); hash.Insert(0, circle, circleTransform); hash.Insert(1, rect, rectTransform); hash.Retrieve(1, rect, rectTransform);  In this example, the circle we inserted will be in the IEnumerable returned by the Retrieve call because they both exist in the same hash cell.\npublic void Clear() Empties the spatial hash. Useful when the spatial hash contains dynamic data that needs to be updated.\n"
 },
 {
-	"uri": "/transform/position2d/",
+	"uri": "/bonk/transform/position2d/",
 	"title": "Position2D",
 	"tags": [],
 	"description": "",
 	"content": "In 2D games, when it comes to rendering we are generally dealing with pixels. This presents us with certain challenges that don\u0026rsquo;t exist in 3D.\nFor example - what is half of a pixel? The pixel is the smallest possible unit in 2D rendering, so fractions of pixels don\u0026rsquo;t really exist.\nThis can present us with problems when it comes to game physics. If your character is at coordinates (2.5, 3.5), where do you draw the character? Is their sprite rounded up, or down? It might look strange if the rounding does not line up with your physics system.\nTo avoid these problems, I created the Position2D struct. Position2D maintains an integer X and Y position, as well as X and Y fractional carryover. Whenever numbers with fractional values are added to the position, the fractional values are added to the carryover. Once the carryover value reaches 1, it is added to the coordinate. This means that we can treat positions as integer values without sacrificing precision.\nTherefore, in our physics calculations, we will never have discrepancies between internal game position logic and rendering.\nvar one = new Position2D(1.3f, 3.5f); var two = new Position2D(4.8f, 0.9f); var result = one + two; // result.X is 6, result.Y is 4  When we subtract Position2D vectors, this creates a Vector2 representing motion, and the carryover values are used.\nvar one = new Position2D(1.3f, 3.5f); var two = new Position2D(4.8f, 0.9f); var result = one - two; // result.X is -3.5f, result.Y is 2.6f  "
 },
 {
-	"uri": "/transform/",
+	"uri": "/bonk/transform/",
 	"title": "Transform",
 	"tags": [],
 	"description": "",
 	"content": " Chapter 2 Transform Mathematical operations in disguise.\n"
 },
 {
-	"uri": "/narrow_phase/gjk2d/",
+	"uri": "/bonk/narrow_phase/gjk2d/",
 	"title": "GJK2D",
 	"tags": [],
 	"description": "",
 	"content": "Bonk uses the Gilbert-Johnson-Keerthi, or GJK, algorithm to perform narrow phase collision detection.\nTo accurately check a collision, you must pass two sets of shapes and transforms to the GJK2D.TestCollision method. Remember that a transform operates on the vertices of a shape: it moves, rotates, and scales them in 2D space.\nvar circleA = new Circle(2); var transformA = new Transform2D(new Vector2(-1, -1)); var circleB = new Circle(2); var transformB = new Transform2D(new Vector2(1, 1)); var (result, simplex) = GJK2D.TestCollision(circleA, transformA, circleB, transformB);  Note that this method returns two variables. The first is whether an overlap has occurred. The second is the simplex. You can think of the simplex as a key that helps you find the minimum separating vector. Note that if there was no collision, the value of the simplex is irrelevant.\n"
 },
 {
-	"uri": "/shapes/line/",
+	"uri": "/bonk/shapes/line/",
 	"title": "Line",
 	"tags": [],
 	"description": "",
 	"content": "To define a Line, give a start and end position.\nvar start = new Position2D(-1, 1); var end = new Position2D(1, 1); var line = new Line(start, end);  "
 },
 {
-	"uri": "/broad_phase/spatial_hash/",
+	"uri": "/bonk/broad_phase/spatial_hash/",
 	"title": "Spatial Hash",
 	"tags": [],
 	"description": "",
 	"content": "In spatial hashing, we place each object into one or more \u0026ldquo;buckets\u0026rdquo;. Think of a grid covering 2D space. When an object\u0026rsquo;s bounding box covers one of the cells in this grid, it is placed into that cell. Any two unique objects that occupy the same cell are determined to be potentially colliding.\nIn Bonk, a spatial hash is defined by its ID type and a cell width. The ID type is used to filter objects. Any two objects with the same ID are assumed to not be colliding.\nvar hash = new SpatialHash\u0026lt;Guid\u0026gt;(32);  This spatial hash will use C# GUIDs as its ID type and a cell width of 32.\nThere is an art to choosing a cell width. If your cell width is too small relative to the objects in your game, then your objects will occupy many cells, and the hash check will have to check all of those cells for potential collisions. If your cell width is too large, then many objects will be contained in each cell. You are looking for a sweet spot. My rule of thumb is picking a cell width that is roughly twice the size of the most common objects in your game.\nTo insert an object into the hash, use the Insert method and give an ID, an IShape2D, and a Transform2D.\nvar hash = new SpatialHash\u0026lt;int\u0026gt;(16); var circle = new MoonTools.Core.Bonk.Circle(8); var circleTransform = new Transform2D(new Vector2(16, 16)); var rect = new Rectangle(-2, -2, 2, 2); var rectTransform = new Transform2D(new Vector2(8, 8)); hash.Insert(0, circle, circleTransform); hash.Insert(1, rect, rectTransform);  To find potential collisions, use the Retrieve method and give an ID, an IShape2D, and a Transform2D.\nhash.Retrieve(1, rect, rectTransform);  In this example, the above method call returns an IEnumerable\u0026lt;(T, IShape2D, Transform)\u0026gt; containing the circle information we inserted.\nWhat if we want to update our SpatialHash based on the movements of objects? Simply clear the hash and insert all the objects again.\nhash.Clear(); // Re-insert objects here  That\u0026rsquo;s it! This is everything you need to use a spatial hash for broad-phase collision.\n"
 },
 {
-	"uri": "/shapes/",
+	"uri": "/bonk/shapes/",
 	"title": "Shapes",
 	"tags": [],
 	"description": "",
 	"content": " Chapter 3 Shapes What are shapes? We just don\u0026rsquo;t know.\n"
 },
 {
-	"uri": "/api/gjk2d/",
+	"uri": "/bonk/api/gjk2d/",
 	"title": "GJK2D",
 	"tags": [],
 	"description": "",
 	"content": " GJK2D is a static class containing a single public method which is used for narrow-phase collision detection.\nMethods public static (bool, SimplexVertices) TestCollision(IShape2D shapeA, Transform2D transformA, IShape2D shapeB, Transform2D transformB) Returns a tuple containing two values: the collision result and the simplex. If there is an overlap, the simplex will contain the termination simplex that can be used as a starting point for the Expanding Polytope Algorithm to compute a penetration vector. Otherwise, the simplex can be ignored.\nExample:\nvar circleA = new Circle(2); var transformA = new Transform2D(new Vector2(-1, -1)); var circleB = new Circle(2); var transformB = new Transform2D(new Vector2(1, 1)); var (result, simplex) = GJK2D.TestCollision(circleA, transformA, circleB, transformB);  In this example, these transformed circles are indeed overlapping, so result will be true and simplex will contain the termination simplex.\n"
 },
 {
-	"uri": "/transform/transform2d/",
+	"uri": "/bonk/transform/transform2d/",
 	"title": "Transform2D",
 	"tags": [],
 	"description": "",
 	"content": "To create a Transform2D, you must provide a Position2D or a Vector2 for translation (Vector2 is converted to Position2D internally), a float representing rotation in degrees, and a Vector2 representing scale.\nvar transform = new Transform2D(new Position2D(4, 1), 5f, new Vector2(3, 1));  The following section will describe how to use an IShape2D in conjunction with Transform2D to perform collision detection.\n"
 },
 {
-	"uri": "/narrow_phase/epa2d/",
+	"uri": "/bonk/narrow_phase/epa2d/",
 	"title": "EPA2D",
 	"tags": [],
 	"description": "",
 	"content": "If an overlap has occurred, often we wish to determine the minimum separating vector, which is the shortest possible vector by which one of the shapes could be moved in order for them to stop overlapping. For this purpose, Bonk implements the Expanding Polytope Algorithm.\nTo use this feature, you must pass the shapes and transforms as well as the simplex that is returned from the GJK2D.TestCollision method.\nvar squareA = new Rectangle(-1, -1, 1, 1); var transformA = Transform2D.DefaultTransform; var squareB = new Rectangle(-1, -1, 1, 1); var transformB = new Transform2D(new Vector2(1.5f, 0)); var (result, simplex) = GJK2D.TestCollision(squareA, transformA, squareB, transformB); if (result) { var intersection = EPA2D.Intersect(squareA, transformA, squareB, transformB, simplex); }  "
 },
 {
-	"uri": "/shapes/circle/",
+	"uri": "/bonk/shapes/circle/",
 	"title": "Circle",
 	"tags": [],
 	"description": "",
 	"content": "To define a circle, give a radius.\nvar circle = new Circle(3);  "
 },
 {
-	"uri": "/broad_phase/",
+	"uri": "/bonk/broad_phase/",
 	"title": "Broad Phase",
 	"tags": [],
 	"description": "",
 	"content": " Chapter 4 Broad Phase Fast and inaccurate.\n"
 },
 {
-	"uri": "/api/epa2d/",
+	"uri": "/bonk/api/epa2d/",
 	"title": "EPA2D",
 	"tags": [],
 	"description": "",
 	"content": " EPA2D is a static class containing a single public method which is used for computing the penetration vector of two overlapping shapes.\nMethods public static Vector2 Intersect(IShape2D shapeA, Transform2D Transform2DA, IShape2D shapeB, Transform2D Transform2DB, IEnumerable givenSimplexVertices) Given two sets of shapes and transforms and an initial simplex, computes a penetration vector. When motion along the penetration vector is applied, the shape-transforms are guaranteed to become separated.\nExample:\nvar squareA = new Rectangle(-1, -1, 1, 1); var transformA = Transform2D.DefaultTransform; var squareB = new Rectangle(-1, -1, 1, 1); var transformB = new Transform2D(new Vector2(1.5f, 0)); var (result, simplex) = GJK2D.TestCollision(squareA, transformA, squareB, transformB); if (result) { var intersection = EPA2D.Intersect(squareA, transformA, squareB, transformB, simplex); }  In this example, the resulting penetration vector will be (1, 0).\n"
 },
 {
-	"uri": "/shapes/rectangle/",
+	"uri": "/bonk/shapes/rectangle/",
 	"title": "Rectangle",
 	"tags": [],
 	"description": "",
 	"content": "To define a rectangle, give a minimum X and Y and a maximum X and Y.\nvar minX = -1; var minY = -1; var maxX = 1; var maxY = 1; var rectangle = new Rectangle(minX, minY, maxX, maxY);  "
 },
 {
-	"uri": "/narrow_phase/",
+	"uri": "/bonk/narrow_phase/",
 	"title": "Narrow Phase",
 	"tags": [],
 	"description": "",
 	"content": " Chapter 5 Narrow Phase Slow and precise.\n"
 },
 {
-	"uri": "/shapes/polygon/",
+	"uri": "/bonk/shapes/polygon/",
 	"title": "Polygon",
 	"tags": [],
 	"description": "",
 	"content": "To define a polygon, pass a variable number of Position2D structs representing the points of the polygon.\nvar polygon = new Polygon( new Position2D(0, 0), new Position2D(-1, -1), new Position2D(1, -1), new Position2D(1, 1), new Position2D(-1, 1) );  Be careful not to define a concave Polygon, as this will cause the results of collision detection to be incorrect.\n"
 },
 {
-	"uri": "/api/",
+	"uri": "/bonk/api/",
 	"title": "API",
 	"tags": [],
 	"description": "",
 	"content": " Chapter 6 API Technicalities.\n"
 },
 {
-	"uri": "/",
+	"uri": "/bonk/",
 	"title": "Bonk",
 	"tags": [],
 	"description": "",
 	"content": " Bonk Bonk is a fast and modular collision detection system for MonoGame that is part of the MoonTools suite.\nBonk is designed to help you figure out if two shapes are overlapping and by how much.\nBonk is not a physics simulator and it will not help you execute collision responses.\nBonk is designed for performance and memory efficiency. Defining shapes and performing collision tests require no heap allocations and thus put no pressure on the garbage collector. If you reuse spatial hashes, Bonk will never cause garbage collection.\nBonk is available as a NuGet package.\nBonk is licensed under the LGPL-3 license. In summary: feel free to include it in your closed-source game and modify it internally at will, but if you make changes that you intend to redistribute, you must freely publish your changes.\n"
 },
 {
-	"uri": "/getting_started/installation/",
+	"uri": "/bonk/getting_started/installation/",
 	"title": "Installation",
 	"tags": [],
 	"description": "",
 	"content": "The simplest way of using Bonk is by including it in your C# project as a NuGet package.\nTo include the latest version of Bonk in your project using the .NET CLI, use the following command:\ndotnet add package MoonTools.Core.Bonk  If you are using the NuGet Package Manager, you may do:\nPM\u0026gt; Install-Package MoonTools.Core.Bonk  Once you have done this, you may access Bonk functionality by including\nusing MoonTools.Core.Bonk;  in any C# file.\nOf course, you are free to include the source code directly in your project as well, but this is less convenient.\n"
 },
 {
-	"uri": "/categories/",
+	"uri": "/bonk/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "/tags/",
+	"uri": "/bonk/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Transform on Bonk Docs</title>
-    <link>/transform/</link>
+    <link>/bonk/transform/</link>
     <description>Recent content in Transform on Bonk Docs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 14 Sep 2019 23:05:37 -0700</lastBuildDate>
     
-	<atom:link href="/transform/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/bonk/transform/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Overview</title>
-      <link>/transform/overview/</link>
+      <link>/bonk/transform/overview/</link>
       <pubDate>Sat, 14 Sep 2019 23:08:31 -0700</pubDate>
       
-      <guid>/transform/overview/</guid>
+      <guid>/bonk/transform/overview/</guid>
       <description>Bonk uses the Transform2D struct which is taken from the MoonTools.Core.Structs package. By extension it also uses the Position2D struct taken from the same package.
 A Transform2D is basically a way to store information about an object&amp;rsquo;s location, rotation, and scale in 2-dimensional space. Transforms use matrix math to perform all of these operations at once, making them very fast.
 For memory performance purposes, shapes are implemented as structs, meaning they are value types.</description>
@@ -24,10 +24,10 @@ For memory performance purposes, shapes are implemented as structs, meaning they
     
     <item>
       <title>Position2D</title>
-      <link>/transform/position2d/</link>
+      <link>/bonk/transform/position2d/</link>
       <pubDate>Sat, 14 Sep 2019 23:17:46 -0700</pubDate>
       
-      <guid>/transform/position2d/</guid>
+      <guid>/bonk/transform/position2d/</guid>
       <description>In 2D games, when it comes to rendering we are generally dealing with pixels. This presents us with certain challenges that don&amp;rsquo;t exist in 3D.
 For example - what is half of a pixel? The pixel is the smallest possible unit in 2D rendering, so fractions of pixels don&amp;rsquo;t really exist.
 This can present us with problems when it comes to game physics. If your character is at coordinates (2.5, 3.</description>
@@ -35,10 +35,10 @@ This can present us with problems when it comes to game physics. If your charact
     
     <item>
       <title>Transform2D</title>
-      <link>/transform/transform2d/</link>
+      <link>/bonk/transform/transform2d/</link>
       <pubDate>Sat, 14 Sep 2019 23:30:26 -0700</pubDate>
       
-      <guid>/transform/transform2d/</guid>
+      <guid>/bonk/transform/transform2d/</guid>
       <description>To create a Transform2D, you must provide a Position2D or a Vector2 for translation (Vector2 is converted to Position2D internally), a float representing rotation in degrees, and a Vector2 representing scale.
 var transform = new Transform2D(new Position2D(4, 1), 5f, new Vector2(3, 1));  The following section will describe how to use an IShape2D in conjunction with Transform2D to perform collision detection.</description>
     </item>

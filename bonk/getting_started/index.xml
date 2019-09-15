@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Getting Started on Bonk Docs</title>
-    <link>/getting_started/</link>
+    <link>/bonk/getting_started/</link>
     <description>Recent content in Getting Started on Bonk Docs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 14 Sep 2019 18:05:58 -0700</lastBuildDate>
     
-	<atom:link href="/getting_started/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/bonk/getting_started/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Installation</title>
-      <link>/getting_started/installation/</link>
+      <link>/bonk/getting_started/installation/</link>
       <pubDate>Sat, 14 Sep 2019 18:20:28 -0700</pubDate>
       
-      <guid>/getting_started/installation/</guid>
+      <guid>/bonk/getting_started/installation/</guid>
       <description>The simplest way of using Bonk is by including it in your C# project as a NuGet package.
 To include the latest version of Bonk in your project using the .NET CLI, use the following command:
 dotnet add package MoonTools.Core.Bonk  If you are using the NuGet Package Manager, you may do:
