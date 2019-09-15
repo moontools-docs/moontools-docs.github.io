@@ -151,7 +151,7 @@
 	"title": "Polygon",
 	"tags": [],
 	"description": "",
-	"content": "To define a polygon, pass a variable number of Position2D structs representing the points of the polygon.\nvar polygon = new Polygon( new Position2D(0, 0), new Position2D(-1, -1), new Position2D(1, -1), new Position2D(1, 1), new Position2D(-1, 1) );  Be careful not to define a concave Polygon, as this will cause the results of collision detection to be incorrect.\n"
+	"content": "To define a polygon, pass a variable number of Position2D structs representing the points of the polygon.\nvar polygon = new Polygon( new Position2D(-2, 0), new Position2D(0, 2), new Position2D(2, 0), );  This polygon, for example, is a triangle.\nBe careful not to define a concave Polygon, as this will cause the results of collision detection to be incorrect.\n"
 },
 {
 	"uri": "https://moontools-docs.github.io/bonk/api/",
