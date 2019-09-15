@@ -1,50 +1,33 @@
 
 :root{
-
+    
     --MAIN-TEXT-color:#323232; /* Color of text by default */
     --MAIN-TITLES-TEXT-color: #5e5e5e; /* Color of titles h2-h3-h4-h5 */
-    --MAIN-LINK-color:#f433ab; /* Color of links */
-    --MAIN-LINK-HOVER-color:#cb04a5; /* Color of hovered links */
-    --MAIN-ANCHOR-color: #71b986; /* color of anchors on titles */
+    --MAIN-LINK-color:#f31c1c; /* Color of links */
+    --MAIN-LINK-HOVER-color:#d01616; /* Color of hovered links */
+    --MAIN-ANCHOR-color: #f31c1c; /* color of anchors on titles */
 
-    --MENU-HEADER-BG-color:#06122F; /* Background color of menu header */
-    --MENU-HEADER-BORDER-color:#f000a4; /*Color of menu header border */
+    --MENU-HEADER-BG-color:#dc1010; /* Background color of menu header */
+    --MENU-HEADER-BORDER-color:#e23131; /*Color of menu header border */ 
 
-    --MENU-SEARCH-BG-color:#4C8D90; /* Search field background color (by default borders + icons) */
-    --MENU-SEARCH-BOX-color: #93B7C1; /* Override search field border color */
-    --MENU-SEARCH-BOX-ICONS-color: #C8DCE2; /* Override search field icons color */
+    --MENU-SEARCH-BG-color:#b90000; /* Search field background color (by default borders + icons) */
+    --MENU-SEARCH-BOX-color: #ef2020; /* Override search field border color */
+    --MENU-SEARCH-BOX-ICONS-color: #fda1a1; /* Override search field icons color */
 
-    --MENU-SECTIONS-ACTIVE-BG-color:#65334d; /* Background color of the active section and its childs */
-    --MENU-SECTIONS-BG-color:#65334d; /* Background color of other sections */
+    --MENU-SECTIONS-ACTIVE-BG-color:#2b2020; /* Background color of the active section and its childs */
+    --MENU-SECTIONS-BG-color:#312525; /* Background color of other sections */
     --MENU-SECTIONS-LINK-color: #ccc; /* Color of links in menu */
     --MENU-SECTIONS-LINK-HOVER-color: #e6e6e6;  /* Color of links in menu, when hovered */
-    --MENU-SECTION-ACTIVE-CATEGORY-color: #fff; /* Color of active category text */
-    --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #f433ab; /* Color of background for the active category (only) */
-
-    --MENU-VISITED-color: #71b986; /* Color of 'page visited' icons in menu */
-    --MENU-SECTION-HR-color: #20272b; /* Color of <hr> separator in menu */
-
-}
-
-@font-face {
-    font-family: 'Public Sans';
-    src: url("../fonts/publicsans-regular-webfont.woff") format("woff");
-    src: url("../fonts/publicsans-regular-webfont.woff2") format("woff2");
-    font-style: normal;
-    font-weight: 400;
-}
-@font-face {
-    font-family: 'Public Sans';
-    src: url("../fonts/publicsans-light-webfont.woff") format("woff");
-    src: url("../fonts/publicsans-light-webfont.woff2") format("woff2");
-    font-style: normal;
-    font-weight: 300;
+    --MENU-SECTION-ACTIVE-CATEGORY-color: #777; /* Color of active category text */
+    --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #fff; /* Color of background for the active category (only) */
+    
+    --MENU-VISITED-color: #ff3333; /* Color of 'page visited' icons in menu */
+    --MENU-SECTION-HR-color: #2b2020; /* Color of <hr> separator in menu */
+    
 }
 
 body {
-    font-family: "Public Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     color: var(--MAIN-TEXT-color) !important;
-    font-size: 16px !important;
 }
 
 textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="url"]:focus, input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, select[multiple=multiple]:focus {
@@ -117,4 +100,12 @@ a:hover {
 
 #sidebar hr {
     border-color: var(--MENU-SECTION-HR-color);
+}
+
+#body .tags a.tag-link {
+    background-color: var(--MENU-HEADER-BG-color);    
+}
+
+#body .tags a.tag-link:before {
+    border-right-color: var(--MENU-HEADER-BG-color);
 }
