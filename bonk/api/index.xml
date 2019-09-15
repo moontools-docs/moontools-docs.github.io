@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>API on Bonk Docs</title>
-    <link>/bonk/api/</link>
+    <link>https://moontools-docs.github.io/bonk/api/</link>
     <description>Recent content in API on Bonk Docs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 14 Sep 2019 23:45:20 -0700</lastBuildDate>
     
-	<atom:link href="/bonk/api/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://moontools-docs.github.io/bonk/api/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>IShape2D</title>
-      <link>/bonk/api/ishape2d/</link>
+      <link>https://moontools-docs.github.io/bonk/api/ishape2d/</link>
       <pubDate>Sun, 15 Sep 2019 11:06:50 -0700</pubDate>
       
-      <guid>/bonk/api/ishape2d/</guid>
+      <guid>https://moontools-docs.github.io/bonk/api/ishape2d/</guid>
       <description>An IShape2D is an interface that, when implemented, allows for spatial hashing and the computation of Minkowski Differences.
 Your IShape2D types should be structs for memory efficiency purposes.
 Methods Vector2 Support(Vector2 direction, Transform2D transform) A method which implements a support function for use with a Minkowski Difference.
@@ -25,10 +25,10 @@ The support function must, given a directional vector and a Transform2D, return 
     
     <item>
       <title>SpatialHash&lt;T&gt;</title>
-      <link>/bonk/api/spatialhash/</link>
+      <link>https://moontools-docs.github.io/bonk/api/spatialhash/</link>
       <pubDate>Sun, 15 Sep 2019 11:28:40 -0700</pubDate>
       
-      <guid>/bonk/api/spatialhash/</guid>
+      <guid>https://moontools-docs.github.io/bonk/api/spatialhash/</guid>
       <description>SpatialHash is used for broad-phase collision detection. It can quickly return a set of potential collisions of a transformed shape. SpatialHash takes an ID type that is used to avoid comparing certain shape-transforms.
 Methods public SpatialHash(int cellSize) Constructor method. Takes an integer representing the width of a cell in the spatial hash.
 The cell width must not be too large or too small. If the cell width is too small, then shape-transforms will occupy many cells, and the hash check will have to check all of those cells for potential collisions.</description>
@@ -36,20 +36,20 @@ The cell width must not be too large or too small. If the cell width is too smal
     
     <item>
       <title>GJK2D</title>
-      <link>/bonk/api/gjk2d/</link>
+      <link>https://moontools-docs.github.io/bonk/api/gjk2d/</link>
       <pubDate>Sun, 15 Sep 2019 11:19:13 -0700</pubDate>
       
-      <guid>/bonk/api/gjk2d/</guid>
+      <guid>https://moontools-docs.github.io/bonk/api/gjk2d/</guid>
       <description>GJK2D is a static class containing a single public method which is used for narrow-phase collision detection.
 Methods public static (bool, SimplexVertices) TestCollision(IShape2D shapeA, Transform2D transformA, IShape2D shapeB, Transform2D transformB) Returns a tuple containing two values: the collision result and the simplex. If there is an overlap, the simplex will contain the termination simplex that can be used as a starting point for the Expanding Polytope Algorithm to compute a penetration vector.</description>
     </item>
     
     <item>
       <title>EPA2D</title>
-      <link>/bonk/api/epa2d/</link>
+      <link>https://moontools-docs.github.io/bonk/api/epa2d/</link>
       <pubDate>Sun, 15 Sep 2019 11:23:43 -0700</pubDate>
       
-      <guid>/bonk/api/epa2d/</guid>
+      <guid>https://moontools-docs.github.io/bonk/api/epa2d/</guid>
       <description>EPA2D is a static class containing a single public method which is used for computing the penetration vector of two overlapping shapes.
 Methods public static Vector2 Intersect(IShape2D shapeA, Transform2D Transform2DA, IShape2D shapeB, Transform2D Transform2DB, IEnumerable givenSimplexVertices) Given two sets of shapes and transforms and an initial simplex, computes a penetration vector. When motion along the penetration vector is applied, the shape-transforms are guaranteed to become separated.
 Example:

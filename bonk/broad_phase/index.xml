@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Broad Phase on Bonk Docs</title>
-    <link>/bonk/broad_phase/</link>
+    <link>https://moontools-docs.github.io/bonk/broad_phase/</link>
     <description>Recent content in Broad Phase on Bonk Docs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 14 Sep 2019 18:33:15 -0700</lastBuildDate>
     
-	<atom:link href="/bonk/broad_phase/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://moontools-docs.github.io/bonk/broad_phase/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Overview</title>
-      <link>/bonk/broad_phase/overview/</link>
+      <link>https://moontools-docs.github.io/bonk/broad_phase/overview/</link>
       <pubDate>Sat, 14 Sep 2019 18:36:07 -0700</pubDate>
       
-      <guid>/bonk/broad_phase/overview/</guid>
+      <guid>https://moontools-docs.github.io/bonk/broad_phase/overview/</guid>
       <description>Let&amp;rsquo;s say we have a room with 100 objects. How do we know if any of those 100 objects are touching one another?
 The naive solution is to simply check each pair of objects and see if they are colliding.
 Unfortunately, this will require 10000 comparisons.
@@ -27,10 +27,10 @@ The purpose of the broad-phase is to very quickly check if an object might be to
     
     <item>
       <title>Spatial Hash</title>
-      <link>/bonk/broad_phase/spatial_hash/</link>
+      <link>https://moontools-docs.github.io/bonk/broad_phase/spatial_hash/</link>
       <pubDate>Sat, 14 Sep 2019 18:35:33 -0700</pubDate>
       
-      <guid>/bonk/broad_phase/spatial_hash/</guid>
+      <guid>https://moontools-docs.github.io/bonk/broad_phase/spatial_hash/</guid>
       <description>In spatial hashing, we place each object into one or more &amp;ldquo;buckets&amp;rdquo;. Think of a grid covering 2D space. When an object&amp;rsquo;s bounding box covers one of the cells in this grid, it is placed into that cell. Any two unique objects that occupy the same cell are determined to be potentially colliding.
 In Bonk, a spatial hash is defined by its ID type and a cell width. The ID type is used to filter objects.</description>
     </item>
