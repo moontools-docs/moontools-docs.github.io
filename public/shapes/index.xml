@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shapes on Bonk Docs</title>
+    <link>/shapes/</link>
+    <description>Recent content in Shapes on Bonk Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 14 Sep 2019 19:08:45 -0700</lastBuildDate>
+    
+	<atom:link href="/shapes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Overview</title>
+      <link>/shapes/overview/</link>
+      <pubDate>Sat, 14 Sep 2019 19:19:03 -0700</pubDate>
+      
+      <guid>/shapes/overview/</guid>
+      <description>In Bonk, an IShape2D is defined by two methods.
+1) A support function, which is a method that returns the farthest possible point in the shape in a given Vector2 direction. The shape vertices are transformed by a Transform2D.
+2) A method for creating an axis-aligned bounding box from the shape that takes a Transform2D to transform the shape vertices.
+Bonk provides you with tested implementations of four common 2D shapes, but you can implement these methods to create custom IShape2D structs.</description>
+    </item>
+    
+    <item>
+      <title>Line</title>
+      <link>/shapes/line/</link>
+      <pubDate>Sat, 14 Sep 2019 19:36:39 -0700</pubDate>
+      
+      <guid>/shapes/line/</guid>
+      <description>To define a Line, give a start and end position.
+var start = new Position2D(-1, 1); var end = new Position2D(1, 1); var line = new Line(start, end);  </description>
+    </item>
+    
+    <item>
+      <title>Circle</title>
+      <link>/shapes/circle/</link>
+      <pubDate>Sat, 14 Sep 2019 19:46:44 -0700</pubDate>
+      
+      <guid>/shapes/circle/</guid>
+      <description>To define a circle, give a radius.
+var circle = new Circle(3);  </description>
+    </item>
+    
+    <item>
+      <title>Rectangle</title>
+      <link>/shapes/rectangle/</link>
+      <pubDate>Sat, 14 Sep 2019 20:37:23 -0700</pubDate>
+      
+      <guid>/shapes/rectangle/</guid>
+      <description>To define a rectangle, give a minimum X and Y and a maximum X and Y.
+var minX = -1; var minY = -1; var maxX = 1; var maxY = 1; var rectangle = new Rectangle(minX, minY, maxX, maxY);  </description>
+    </item>
+    
+    <item>
+      <title>Polygon</title>
+      <link>/shapes/polygon/</link>
+      <pubDate>Sat, 14 Sep 2019 20:55:54 -0700</pubDate>
+      
+      <guid>/shapes/polygon/</guid>
+      <description>To define a polygon, pass a variable number of Position2D structs representing the points of the polygon.
+var polygon = new Polygon( new Position2D(0, 0), new Position2D(-1, -1), new Position2D(1, -1), new Position2D(1, 1), new Position2D(-1, 1) );  Be careful not to define a concave Polygon, as this will cause the results of collision detection to be incorrect.</description>
+    </item>
+    
+  </channel>
+</rss>
