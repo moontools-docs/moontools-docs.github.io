@@ -148,7 +148,7 @@ var transform = new Transform2D(new Position2D(4, 1), 5f, new Vector2(3, 1));  T
       <pubDate>Sat, 14 Sep 2019 22:54:35 -0700</pubDate>
       
       <guid>https://moontools-docs.github.io/bonk/narrow_phase/epa2d/</guid>
-      <description>If an overlap has occurred, often we wish to determine the minimum separating vector, which is the shortest possible vector by which one of the shapes could be moved in order for them to stop overlapping. For this purpose, Bonk implements the Expanding Polytope Algorithm.
+      <description>If an overlap has occurred, often we wish to determine the penetration vector, which is the shortest possible vector by which one of the shapes could be moved in order for them to stop overlapping. For this purpose, Bonk implements the Expanding Polytope Algorithm.
 To use this feature, you must pass the shapes and transforms as well as the simplex that is returned from the GJK2D.TestCollision method.
 var squareA = new Rectangle(-1, -1, 1, 1); var transformA = Transform2D.</description>
     </item>
