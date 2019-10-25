@@ -12,20 +12,20 @@
     <title>EPA2D :: Bonk Docs</title>
 
     
-    <link href="/bonk/css/nucleus.css?1568581098" rel="stylesheet">
-    <link href="/bonk/css/fontawesome-all.min.css?1568581098" rel="stylesheet">
-    <link href="/bonk/css/hybrid.css?1568581098" rel="stylesheet">
-    <link href="/bonk/css/featherlight.min.css?1568581098" rel="stylesheet">
-    <link href="/bonk/css/perfect-scrollbar.min.css?1568581098" rel="stylesheet">
-    <link href="/bonk/css/auto-complete.css?1568581098" rel="stylesheet">
-    <link href="/bonk/css/atom-one-dark-reasonable.css?1568581098" rel="stylesheet">
-    <link href="/bonk/css/theme.css?1568581098" rel="stylesheet">
-    <link href="/bonk/css/hugo-theme.css?1568581098" rel="stylesheet">
+    <link href="/bonk/css/nucleus.css?1572039471" rel="stylesheet">
+    <link href="/bonk/css/fontawesome-all.min.css?1572039471" rel="stylesheet">
+    <link href="/bonk/css/hybrid.css?1572039471" rel="stylesheet">
+    <link href="/bonk/css/featherlight.min.css?1572039471" rel="stylesheet">
+    <link href="/bonk/css/perfect-scrollbar.min.css?1572039471" rel="stylesheet">
+    <link href="/bonk/css/auto-complete.css?1572039471" rel="stylesheet">
+    <link href="/bonk/css/atom-one-dark-reasonable.css?1572039471" rel="stylesheet">
+    <link href="/bonk/css/theme.css?1572039471" rel="stylesheet">
+    <link href="/bonk/css/hugo-theme.css?1572039471" rel="stylesheet">
     
-      <link href="/bonk/css/theme-bonk.css?1568581098" rel="stylesheet">
+      <link href="/bonk/css/theme-bonk.css?1572039471" rel="stylesheet">
     
 
-    <script src="/bonk/js/jquery-3.3.1.min.js?1568581098"></script>
+    <script src="/bonk/js/jquery-3.3.1.min.js?1572039471"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -86,14 +86,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/bonk/js/lunr.min.js?1568581098"></script>
-<script type="text/javascript" src="/bonk/js/auto-complete.js?1568581098"></script>
+<script type="text/javascript" src="/bonk/js/lunr.min.js?1572039471"></script>
+<script type="text/javascript" src="/bonk/js/auto-complete.js?1572039471"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/moontools-docs.github.io\/bonk\/";
     
 </script>
-<script type="text/javascript" src="/bonk/js/search.js?1568581098"></script>
+<script type="text/javascript" src="/bonk/js/search.js?1572039471"></script>
 
     
   </div>
@@ -709,7 +709,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#public-static-vector2-intersect-ishape2d-shapea-transform2d-transform2da-ishape2d-shapeb-transform2d-transform2db-ienumerable-vector2-givensimplexvertices"><strong>public static Vector2 Intersect(IShape2D shapeA, Transform2D Transform2DA, IShape2D shapeB, Transform2D Transform2DB, IEnumerable<Vector2> givenSimplexVertices)</strong></a></li>
+<li><a href="#public-static-vector2-intersect-ishape2d-shapea-transform2d-transform2da-ishape2d-shapeb-transform2d-transform2db-simplex-simplex"><strong>public static Vector2 Intersect(IShape2D shapeA, Transform2D Transform2DA, IShape2D shapeB, Transform2D Transform2DB, Simplex simplex)</strong></a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -741,11 +741,11 @@
 
 
 
-<p><em>EPA2D</em> is a static class containing a single public method which is used for computing the penetration vector of two overlapping shapes.</p>
+<p><em>EPA2D</em> is a static class containing a single method for computing the penetration vector of two overlapping shapes.</p>
 
 <h2 id="methods">Methods</h2>
 
-<h5 id="public-static-vector2-intersect-ishape2d-shapea-transform2d-transform2da-ishape2d-shapeb-transform2d-transform2db-ienumerable-vector2-givensimplexvertices"><strong>public static Vector2 Intersect(IShape2D shapeA, Transform2D Transform2DA, IShape2D shapeB, Transform2D Transform2DB, IEnumerable<Vector2> givenSimplexVertices)</strong></h5>
+<h5 id="public-static-vector2-intersect-ishape2d-shapea-transform2d-transform2da-ishape2d-shapeb-transform2d-transform2db-simplex-simplex"><strong>public static Vector2 Intersect(IShape2D shapeA, Transform2D Transform2DA, IShape2D shapeB, Transform2D Transform2DB, Simplex simplex)</strong></h5>
 
 <p>Given two sets of shapes and transforms and an initial simplex, computes a penetration vector. When motion along the penetration vector is applied, the shape-transforms are guaranteed to become separated.</p>
 
@@ -756,7 +756,7 @@ var transformA = Transform2D.DefaultTransform;
 var squareB = new Rectangle(-1, -1, 1, 1);
 var transformB = new Transform2D(new Vector2(1.5f, 0));
 
-var (result, simplex) = GJK2D.TestCollision(squareA, transformA, squareB, transformB);
+var (result, simplex) = GJK2D.FindCollisionSimplex(squareA, transformA, squareB, transformB);
 
 if (result)
 {
@@ -1212,19 +1212,19 @@ if (result)
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/bonk/js/clipboard.min.js?1568581098"></script>
-    <script src="/bonk/js/perfect-scrollbar.min.js?1568581098"></script>
-    <script src="/bonk/js/perfect-scrollbar.jquery.min.js?1568581098"></script>
-    <script src="/bonk/js/jquery.sticky.js?1568581098"></script>
-    <script src="/bonk/js/featherlight.min.js?1568581098"></script>
-    <script src="/bonk/js/highlight.pack.js?1568581098"></script>
+    <script src="/bonk/js/clipboard.min.js?1572039471"></script>
+    <script src="/bonk/js/perfect-scrollbar.min.js?1572039471"></script>
+    <script src="/bonk/js/perfect-scrollbar.jquery.min.js?1572039471"></script>
+    <script src="/bonk/js/jquery.sticky.js?1572039471"></script>
+    <script src="/bonk/js/featherlight.min.js?1572039471"></script>
+    <script src="/bonk/js/highlight.pack.js?1572039471"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/bonk/js/modernizr.custom-3.6.0.js?1568581098"></script>
-    <script src="/bonk/js/learn.js?1568581098"></script>
-    <script src="/bonk/js/hugo-learn.js?1568581098"></script>
+    <script src="/bonk/js/modernizr.custom-3.6.0.js?1572039471"></script>
+    <script src="/bonk/js/learn.js?1572039471"></script>
+    <script src="/bonk/js/hugo-learn.js?1572039471"></script>
 
-    <link href="/bonk/mermaid/mermaid.css?1568581098" rel="stylesheet" />
-    <script src="/bonk/mermaid/mermaid.js?1568581098"></script>
+    <link href="/bonk/mermaid/mermaid.css?1572039471" rel="stylesheet" />
+    <script src="/bonk/mermaid/mermaid.js?1572039471"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
