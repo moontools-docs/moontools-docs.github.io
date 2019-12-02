@@ -4,7 +4,7 @@
 	"title": "IShape2D",
 	"tags": [],
 	"description": "",
-	"content": " An IShape2D is an interface that, when implemented, allows for spatial hashing and the computation of Minkowski Differences.\nYour IShape2D types should be structs for memory efficiency purposes.\nMethods Vector2 Support(Vector2 direction, Transform2D transform) A method which implements a support function for use with a Minkowski Difference.\nThe support function must, given a directional vector and a Transform2D, return the farthest possible vertex of the transformed shape in the given direction.\nFor example, the support function for Bonk\u0026rsquo;s Circle implementation:\npublic Vector2 Support(Vector2 direction, Transform2D transform) { return Vector2.Transform(Vector2.Normalize(direction) * Radius, transform.TransformMatrix); }  AABB AABB(Transform2D transform) A method which returns the axis-aligned bounding box for the transformed shape.\nFor example, the AABB method for Bonk\u0026rsquo;s Circle implementation:\npublic AABB AABB(Transform2D Transform2D) { return new AABB( Transform2D.Position.X - Radius, Transform2D.Position.Y - Radius, Transform2D.Position.X + Radius, Transform2D.Position.Y + Radius ); }  "
+	"content": " An IShape2D is an interface that, when implemented, allows for spatial hashing and the computation of Minkowski Differences.\nYour IShape2D implementations should be structs for memory efficiency purposes.\nMethods Vector2 Support(Vector2 direction, Transform2D transform) A method which implements a support function for use with a Minkowski Difference.\nThe support function must, given a directional vector and a Transform2D, return the farthest possible vertex of the transformed shape in the given direction.\nFor example, the support function for Bonk\u0026rsquo;s Circle implementation:\npublic Vector2 Support(Vector2 direction, Transform2D transform) { return Vector2.Transform(Vector2.Normalize(direction) * Radius, transform.TransformMatrix); }  AABB AABB(Transform2D transform) A method which returns the axis-aligned bounding box for the transformed shape.\nFor example, the AABB method for Bonk\u0026rsquo;s Circle implementation:\npublic AABB AABB(Transform2D Transform2D) { return new AABB( Transform2D.Position.X - Radius, Transform2D.Position.Y - Radius, Transform2D.Position.X + Radius, Transform2D.Position.Y + Radius ); }  "
 },
 {
 	"uri": "https://moontools-docs.github.io/bonk/transform/overview/",
@@ -40,6 +40,13 @@
 	"tags": [],
 	"description": "",
 	"content": " Chapter 1 Getting Started It\u0026rsquo;s pretty simple.\n"
+},
+{
+	"uri": "https://moontools-docs.github.io/bonk/shapes/point/",
+	"title": "Point",
+	"tags": [],
+	"description": "",
+	"content": "To define a Point, pass either a Position2D struct or two integers.\nvar point = new Point(1, 2);  "
 },
 {
 	"uri": "https://moontools-docs.github.io/bonk/api/spatialhash/",
@@ -151,7 +158,7 @@
 	"title": "Polygon",
 	"tags": [],
 	"description": "",
-	"content": "To define a polygon, pass a variable number of Position2D structs representing the points of the polygon.\nvar polygon = new Polygon( new Position2D(-2, 0), new Position2D(0, 2), new Position2D(2, 0), );  This polygon, for example, is a triangle.\nBe careful not to define a concave Polygon, as this will cause the results of collision detection to be incorrect.\nAlso note that because Polygon stores its vertices in an array, instantiating Polygons will cause GC pressure. It is best to use another kind of IShape2D if possible.\n"
+	"content": "To define a polygon, pass a variable number of Position2D structs representing the points of the polygon.\nvar polygon = new Polygon( new Position2D(-2, 0), new Position2D(0, 2), new Position2D(2, 0), );  This polygon, for example, is a triangle.\nBe careful not to define a concave Polygon, as this will cause the results of collision detection to be incorrect. Support for concave polygons is planned for a future release.\nPolygons are considered equal if they define the same vertices, regardless of order. They can even be equivalent to Rectangles:\nvar a = new Polygon( new Position2D(1, 1), new Position2D(1, -1), new Position2D(-1, -1), new Position2D(-1, 1) ); var b = new Rectangle(-1, -1, 1, 1); a == b; // true!  "
 },
 {
 	"uri": "https://moontools-docs.github.io/bonk/api/",
@@ -165,7 +172,7 @@
 	"title": "Bonk",
 	"tags": [],
 	"description": "",
-	"content": " Bonk Bonk is a fast and modular collision detection system for MonoGame that is part of the MoonTools suite.\nBonk is designed to help you figure out if two shapes are overlapping and by how much.\nBonk is not a physics simulator and it will not help you execute collision responses.\nBonk is designed for performance and memory efficiency. Defining most shapes and performing collision tests require no heap allocations and thus put no pressure on the garbage collector. If you reuse spatial hashes and avoid using arbitrary polygons, Bonk will never cause garbage collection.\nBonk is available as a NuGet package.\nBonk is licensed under the LGPL-3 license. In summary: feel free to include it in your closed-source game and modify it internally at will, but if you make changes that you intend to redistribute, you must freely publish your changes.\n"
+	"content": " Bonk Bonk is a fast and modular collision detection system for MonoGame that is part of the MoonTools suite.\nBonk is designed to help you figure out if two shapes are overlapping and by how much.\nBonk is not a physics simulator and it will not help you execute collision responses.\nBonk is designed for performance and memory efficiency. Defining shapes and performing collision tests require no heap allocations and thus put no pressure on the garbage collector. If you reuse spatial hashes, Bonk will never cause garbage collection.\nBonk is available as a NuGet package.\nBonk is licensed under the LGPL-3 license. In summary: feel free to include it in your closed-source game and modify it internally at will, but if you make changes that you intend to redistribute, you must freely publish your changes.\n"
 },
 {
 	"uri": "https://moontools-docs.github.io/bonk/getting_started/installation/",

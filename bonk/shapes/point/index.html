@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/bonk/images/favicon.png" type="image/png">
 
-    <title>Position2D :: Bonk Docs</title>
+    <title>Point :: Bonk Docs</title>
 
     
     <link href="/bonk/css/nucleus.css?1575269049" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/bonk/transform/position2d/">
+  <body class="" data-url="/bonk/shapes/point/">
     <nav id="sidebar" class="">
 
 
@@ -161,7 +161,7 @@
   
     
     <li data-nav-id="/bonk/transform/" title="Transform" class="dd-item 
-        parent
+        
         
         
         ">
@@ -204,7 +204,7 @@
  
   
     
-      <li data-nav-id="/bonk/transform/position2d/" title="Position2D" class="dd-item active">
+      <li data-nav-id="/bonk/transform/position2d/" title="Position2D" class="dd-item ">
         <a href="/bonk/transform/position2d/">
         Position2D
         
@@ -250,7 +250,7 @@
   
     
     <li data-nav-id="/bonk/shapes/" title="Shapes" class="dd-item 
-        
+        parent
         
         
         ">
@@ -293,7 +293,7 @@
  
   
     
-      <li data-nav-id="/bonk/shapes/point/" title="Point" class="dd-item ">
+      <li data-nav-id="/bonk/shapes/point/" title="Point" class="dd-item active">
         <a href="/bonk/shapes/point/">
         Point
         
@@ -705,7 +705,7 @@
             
           
           
-            <a href='/bonk/'>Bonk</a> > <a href='/bonk/transform/'>Transform</a> > Position2D
+            <a href='/bonk/'>Bonk</a> > <a href='/bonk/shapes/'>Shapes</a> > Point
           
          
           
@@ -734,7 +734,7 @@
           
             <h1>
               
-              Position2D
+              Point
             </h1>
           
 
@@ -742,28 +742,9 @@
 
 
 
-<p>In 2D games, when it comes to rendering we are generally dealing with pixels. This presents us with certain challenges that don&rsquo;t exist in 3D.</p>
+<p>To define a Point, pass either a <strong>Position2D</strong> struct or two integers.</p>
 
-<p>For example - what is half of a pixel? The pixel is the smallest possible unit in 2D rendering, so fractions of pixels don&rsquo;t really exist.</p>
-
-<p>This can present us with problems when it comes to game physics. If your character is at coordinates (2.5, 3.5), where do you draw the character? Is their sprite rounded up, or down? It might look strange if the rounding does not line up with your physics system.</p>
-
-<p>To avoid these problems, I created the <em>Position2D</em> struct. <em>Position2D</em> maintains an integer X and Y position, as well as X and Y fractional carryover. Whenever numbers with fractional values are added to the position, the fractional values are added to the carryover. Once the carryover value reaches 1, it is added to the coordinate. This means that we can treat positions as integer values without sacrificing precision.</p>
-
-<p>Therefore, in our physics calculations, we will never have discrepancies between internal game position logic and rendering.</p>
-
-<pre><code class="language-cs">var one = new Position2D(1.3f, 3.5f);
-var two = new Position2D(4.8f, 0.9f);
-
-var result = one + two; // result.X is 6, result.Y is 4
-</code></pre>
-
-<p>When we subtract <em>Position2D</em> vectors, this creates a <em>Vector2</em> representing motion, and the carryover values are used.</p>
-
-<pre><code class="language-cs">var one = new Position2D(1.3f, 3.5f);
-var two = new Position2D(4.8f, 0.9f);
-
-var result = one - two; // result.X is -3.5f, result.Y is 2.6f
+<pre><code class="language-cs">var point = new Point(1, 2);
 </code></pre>
 
 
@@ -838,6 +819,70 @@ var result = one - two; // result.X is -3.5f, result.Y is 2.6f
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -890,70 +935,6 @@ var result = one - two; // result.X is -3.5f, result.Y is 2.6f
                     
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -1218,10 +1199,10 @@ var result = one - two; // result.X is -3.5f, result.Y is 2.6f
 	 
 	 
 		
-			<a class="nav nav-prev" href="/bonk/transform/overview/" title="Overview"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/bonk/shapes/overview/" title="Overview"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/bonk/transform/transform2d/" title="Transform2D" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/bonk/shapes/line/" title="Line" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

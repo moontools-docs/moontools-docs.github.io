@@ -18,7 +18,7 @@
       
       <guid>https://moontools-docs.github.io/bonk/api/ishape2d/</guid>
       <description>An IShape2D is an interface that, when implemented, allows for spatial hashing and the computation of Minkowski Differences.
-Your IShape2D types should be structs for memory efficiency purposes.
+Your IShape2D implementations should be structs for memory efficiency purposes.
 Methods Vector2 Support(Vector2 direction, Transform2D transform) A method which implements a support function for use with a Minkowski Difference.
 The support function must, given a directional vector and a Transform2D, return the farthest possible vertex of the transformed shape in the given direction.</description>
     </item>
