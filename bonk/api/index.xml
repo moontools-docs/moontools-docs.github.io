@@ -19,8 +19,20 @@
       <guid>https://moontools-docs.github.io/bonk/api/ishape2d/</guid>
       <description>An IShape2D is an interface that, when implemented, allows for spatial hashing and the computation of Minkowski Differences.
 Your IShape2D implementations should be structs for memory efficiency purposes.
-Methods Vector2 Support(Vector2 direction, Transform2D transform) A method which implements a support function for use with a Minkowski Difference.
-The support function must, given a directional vector and a Transform2D, return the farthest possible vertex of the transformed shape in the given direction.</description>
+Properties public AABB { get; } An axis-aligned bounding box for the shape. This is stored so we can efficiently transform the AABB when necessary.
+Methods Vector2 Support(Vector2 direction, Transform2D transform) A method which implements a support function for use with a Minkowski Difference.</description>
+    </item>
+    
+    <item>
+      <title>AABB</title>
+      <link>https://moontools-docs.github.io/bonk/api/aabb/</link>
+      <pubDate>Tue, 31 Dec 2019 14:36:00 -0700</pubDate>
+      
+      <guid>https://moontools-docs.github.io/bonk/api/aabb/</guid>
+      <description>AABB, or axis-aligned bounding box, is defined by a minimum point and a maximum point. It is used for broad-phase collision detection. It represents a rectangular outline of the shape so we can quickly insert shapes into a SpatialHash.
+Properties public Vector2 Min { get; private set; } The minimum point of the AABB.
+public Vector2 Max { get; private set; } The maximum point of the AABB.
+Methods public static AABB FromVertices(IEnumerable vertices) Can be used to generate an AABB from an arbitrary collection of vertices.</description>
     </item>
     
     <item>

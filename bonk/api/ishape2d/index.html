@@ -12,20 +12,20 @@
     <title>IShape2D :: Bonk Docs</title>
 
     
-    <link href="/bonk/css/nucleus.css?1575269049" rel="stylesheet">
-    <link href="/bonk/css/fontawesome-all.min.css?1575269049" rel="stylesheet">
-    <link href="/bonk/css/hybrid.css?1575269049" rel="stylesheet">
-    <link href="/bonk/css/featherlight.min.css?1575269049" rel="stylesheet">
-    <link href="/bonk/css/perfect-scrollbar.min.css?1575269049" rel="stylesheet">
-    <link href="/bonk/css/auto-complete.css?1575269049" rel="stylesheet">
-    <link href="/bonk/css/atom-one-dark-reasonable.css?1575269049" rel="stylesheet">
-    <link href="/bonk/css/theme.css?1575269049" rel="stylesheet">
-    <link href="/bonk/css/hugo-theme.css?1575269049" rel="stylesheet">
+    <link href="/bonk/css/nucleus.css?1577831897" rel="stylesheet">
+    <link href="/bonk/css/fontawesome-all.min.css?1577831897" rel="stylesheet">
+    <link href="/bonk/css/hybrid.css?1577831897" rel="stylesheet">
+    <link href="/bonk/css/featherlight.min.css?1577831897" rel="stylesheet">
+    <link href="/bonk/css/perfect-scrollbar.min.css?1577831897" rel="stylesheet">
+    <link href="/bonk/css/auto-complete.css?1577831897" rel="stylesheet">
+    <link href="/bonk/css/atom-one-dark-reasonable.css?1577831897" rel="stylesheet">
+    <link href="/bonk/css/theme.css?1577831897" rel="stylesheet">
+    <link href="/bonk/css/hugo-theme.css?1577831897" rel="stylesheet">
     
-      <link href="/bonk/css/theme-bonk.css?1575269049" rel="stylesheet">
+      <link href="/bonk/css/theme-bonk.css?1577831897" rel="stylesheet">
     
 
-    <script src="/bonk/js/jquery-3.3.1.min.js?1575269049"></script>
+    <script src="/bonk/js/jquery-3.3.1.min.js?1577831897"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -86,14 +86,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/bonk/js/lunr.min.js?1575269049"></script>
-<script type="text/javascript" src="/bonk/js/auto-complete.js?1575269049"></script>
+<script type="text/javascript" src="/bonk/js/lunr.min.js?1577831897"></script>
+<script type="text/javascript" src="/bonk/js/auto-complete.js?1577831897"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/moontools-docs.github.io\/bonk\/";
     
 </script>
-<script type="text/javascript" src="/bonk/js/search.js?1575269049"></script>
+<script type="text/javascript" src="/bonk/js/search.js?1577831897"></script>
 
     
   </div>
@@ -598,6 +598,25 @@
  
   
     
+      <li data-nav-id="/bonk/api/aabb/" title="AABB" class="dd-item ">
+        <a href="/bonk/api/aabb/">
+        AABB
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
       <li data-nav-id="/bonk/api/spatialhash/" title="SpatialHash&lt;T&gt;" class="dd-item ">
         <a href="/bonk/api/spatialhash/">
         SpatialHash&lt;T&gt;
@@ -722,6 +741,16 @@
 <ul>
 <li>
 <ul>
+<li><a href="#properties">Properties</a>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#public-aabb-get"><strong>public AABB { get; }</strong></a></li>
+</ul></li>
+</ul></li>
+</ul></li>
 <li><a href="#methods">Methods</a>
 <ul>
 <li>
@@ -765,6 +794,12 @@
 
 <p>Your <em>IShape2D</em> implementations should be structs for memory efficiency purposes.</p>
 
+<h2 id="properties">Properties</h2>
+
+<h5 id="public-aabb-get"><strong>public AABB { get; }</strong></h5>
+
+<p>An axis-aligned bounding box for the shape. This is stored so we can efficiently transform the AABB when necessary.</p>
+
 <h2 id="methods">Methods</h2>
 
 <h5 id="vector2-support-vector2-direction-transform2d-transform"><strong>Vector2 Support(Vector2 direction, Transform2D transform)</strong></h5>
@@ -789,14 +824,9 @@
 
 <p>For example, the AABB method for Bonk&rsquo;s <em>Circle</em> implementation:</p>
 
-<pre><code class="language-cs">public AABB AABB(Transform2D Transform2D)
+<pre><code class="language-cs">public AABB TransformedAABB(Transform2D Transform2D)
 {
-    return new AABB(
-        Transform2D.Position.X - Radius,
-        Transform2D.Position.Y - Radius,
-        Transform2D.Position.X + Radius,
-        Transform2D.Position.Y + Radius
-    );
+    return AABB.Transformed(AABB, transform2D);
 }
 </code></pre>
 
@@ -1237,6 +1267,22 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -1252,7 +1298,7 @@
 			<a class="nav nav-prev" href="/bonk/api/" title="API"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/bonk/api/spatialhash/" title="SpatialHash&lt;T&gt;" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/bonk/api/aabb/" title="AABB" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1262,19 +1308,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/bonk/js/clipboard.min.js?1575269049"></script>
-    <script src="/bonk/js/perfect-scrollbar.min.js?1575269049"></script>
-    <script src="/bonk/js/perfect-scrollbar.jquery.min.js?1575269049"></script>
-    <script src="/bonk/js/jquery.sticky.js?1575269049"></script>
-    <script src="/bonk/js/featherlight.min.js?1575269049"></script>
-    <script src="/bonk/js/highlight.pack.js?1575269049"></script>
+    <script src="/bonk/js/clipboard.min.js?1577831897"></script>
+    <script src="/bonk/js/perfect-scrollbar.min.js?1577831897"></script>
+    <script src="/bonk/js/perfect-scrollbar.jquery.min.js?1577831897"></script>
+    <script src="/bonk/js/jquery.sticky.js?1577831898"></script>
+    <script src="/bonk/js/featherlight.min.js?1577831898"></script>
+    <script src="/bonk/js/highlight.pack.js?1577831898"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/bonk/js/modernizr.custom-3.6.0.js?1575269049"></script>
-    <script src="/bonk/js/learn.js?1575269049"></script>
-    <script src="/bonk/js/hugo-learn.js?1575269049"></script>
+    <script src="/bonk/js/modernizr.custom-3.6.0.js?1577831898"></script>
+    <script src="/bonk/js/learn.js?1577831898"></script>
+    <script src="/bonk/js/hugo-learn.js?1577831898"></script>
 
-    <link href="/bonk/mermaid/mermaid.css?1575269049" rel="stylesheet" />
-    <script src="/bonk/mermaid/mermaid.js?1575269049"></script>
+    <link href="/bonk/mermaid/mermaid.css?1577831898" rel="stylesheet" />
+    <script src="/bonk/mermaid/mermaid.js?1577831898"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

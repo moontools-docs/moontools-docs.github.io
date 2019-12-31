@@ -4,7 +4,7 @@
 	"title": "IShape2D",
 	"tags": [],
 	"description": "",
-	"content": " An IShape2D is an interface that, when implemented, allows for spatial hashing and the computation of Minkowski Differences.\nYour IShape2D implementations should be structs for memory efficiency purposes.\nMethods Vector2 Support(Vector2 direction, Transform2D transform) A method which implements a support function for use with a Minkowski Difference.\nThe support function must, given a directional vector and a Transform2D, return the farthest possible vertex of the transformed shape in the given direction.\nFor example, the support function for Bonk\u0026rsquo;s Circle implementation:\npublic Vector2 Support(Vector2 direction, Transform2D transform) { return Vector2.Transform(Vector2.Normalize(direction) * Radius, transform.TransformMatrix); }  AABB AABB(Transform2D transform) A method which returns the axis-aligned bounding box for the transformed shape.\nFor example, the AABB method for Bonk\u0026rsquo;s Circle implementation:\npublic AABB AABB(Transform2D Transform2D) { return new AABB( Transform2D.Position.X - Radius, Transform2D.Position.Y - Radius, Transform2D.Position.X + Radius, Transform2D.Position.Y + Radius ); }  "
+	"content": " An IShape2D is an interface that, when implemented, allows for spatial hashing and the computation of Minkowski Differences.\nYour IShape2D implementations should be structs for memory efficiency purposes.\nProperties public AABB { get; } An axis-aligned bounding box for the shape. This is stored so we can efficiently transform the AABB when necessary.\nMethods Vector2 Support(Vector2 direction, Transform2D transform) A method which implements a support function for use with a Minkowski Difference.\nThe support function must, given a directional vector and a Transform2D, return the farthest possible vertex of the transformed shape in the given direction.\nFor example, the support function for Bonk\u0026rsquo;s Circle implementation:\npublic Vector2 Support(Vector2 direction, Transform2D transform) { return Vector2.Transform(Vector2.Normalize(direction) * Radius, transform.TransformMatrix); }  AABB AABB(Transform2D transform) A method which returns the axis-aligned bounding box for the transformed shape.\nFor example, the AABB method for Bonk\u0026rsquo;s Circle implementation:\npublic AABB TransformedAABB(Transform2D Transform2D) { return AABB.Transformed(AABB, transform2D); }  "
 },
 {
 	"uri": "https://moontools-docs.github.io/bonk/transform/overview/",
@@ -40,6 +40,13 @@
 	"tags": [],
 	"description": "",
 	"content": " Chapter 1 Getting Started It\u0026rsquo;s pretty simple.\n"
+},
+{
+	"uri": "https://moontools-docs.github.io/bonk/api/aabb/",
+	"title": "AABB",
+	"tags": [],
+	"description": "",
+	"content": " AABB, or axis-aligned bounding box, is defined by a minimum point and a maximum point. It is used for broad-phase collision detection. It represents a rectangular outline of the shape so we can quickly insert shapes into a SpatialHash.\nProperties public Vector2 Min { get; private set; } The minimum point of the AABB.\npublic Vector2 Max { get; private set; } The maximum point of the AABB.\nMethods public static AABB FromVertices(IEnumerable vertices) Can be used to generate an AABB from an arbitrary collection of vertices. It is generally better to define a more efficient AABB generation method based on the properties of a particular shape, but this can be used for an arbitrary collection of vertices, like a polygon.\npublic static AABB Transformed(AABB aabb, Transform2D transform) Efficiently transforms an AABB. Used internally by SpatialHash to quickly transform a shape\u0026rsquo;s AABB.\n"
 },
 {
 	"uri": "https://moontools-docs.github.io/bonk/shapes/point/",
